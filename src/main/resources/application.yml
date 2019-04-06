@@ -1,0 +1,29 @@
+
+spring:
+  thymeleaf:
+
+    cache: false
+  datasource:
+#    url: jdbc:mysql://localhost:3306/record?serverTimezone=GMT%2B8&useUnicode=true&;characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/record?serverTimezone=GMT%2B8
+    username: root
+    password: LJ950917
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+  jpa:
+    show-sql: true
+
+
+ly:
+  jwt:
+    secret: ly@Login(Auth}*^31)(chenyilei@ # 登录校验的密钥
+    pubKeyPath: i:/1/rsa.pub # 公钥地址
+    priKeyPath: i:/2/rsa.pri # 私钥地址
+    expire: 3000 # 过期时间,单位分钟
+    cookie-name: LY_TOKEN
+    cookie-max-age: 1800
+
+
+server:
+  port: 8080

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title><!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Carbon - Admin Template</title>
+            <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
+            <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
+            <link rel="stylesheet" href="./css/styles.css">
+        </head>
+        <script type="text/javascript">
+
+            window.onload=function () {
+                var bt=document.getElementById("seachbyname");
+                var search=document.getElementById("search");
+                bt.onclick=function () {
+                    // alert(search.value);
+                    document.location='./queryPatient?condition='+search.value;
+                }
+                // function go() {
+                //     alert("1");
+                //
+                // }
+            }
+        </script>
+<body class="sidebar-fixed header-fixed">
+<div class="page-wrapper">
+    <nav class="navbar page-header">
+        <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <a class="navbar-brand" href="#">
+            <img src="./imgs/logo.png" alt="logo">
+        </a>
+
+        <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <ul class="navbar-nav ml-auto">
+
+            <li id="head" th:include="head::head"></li>
+        </ul>
+    </nav>
+
+    <div id="leftbar" th:include="leftbar::leftbar">
+    </div>
+
+        <div class="content">
+            <div class="col-4">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">搜索
+                            <span class="caret"></span>
+                        </button>
+
+                        <div class="dropdown-menu" x-placement="bottom-start">
+                            <button class="dropdown-item" id="seachbyname" > 搜索</button>
+                            <!--th:href="@{'/queryPatient?conditon='+condition}"-->
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                    <input type="text" name="condition"  id="search"  class="form-control" placeholder="姓名或身份证号或年龄...">
+                </div>
+            </div>
+            <table class="table table-striped"th:if="${result.items}">
+                <tr>
+                <th>id</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>生日</th>
+                <th>身份证号</th>
+                <th>电话</th>
+                <th>地址</th>
+                <th>照片</th>
+                <th></th>
+
+                </tr>
+                <tr th:each="patient:${result.items}">
+                <td th:text="${patient.pid}">1</td>
+                <td th:text="${patient.name}">张三</td>
+                <td th:text="${patient.sex}">zhangsan</td>
+                <td th:text="${patient.age}">20</td>
+                <td th:text="${patient.birthday}">1970</td>
+                <td th:text="${patient.idcard}"></td>
+                <td th:text="${patient.phone}"></td>
+                <td th:text="${patient.address}"></td>
+                <td >
+                    <div th:if="${patient.url}">
+                    <!--<img  src="/showPatient?fileName=${patient.url}">-->
+                    <img  class="avatar avatar-sm" src="/1/1.jpg">
+                </div>
+                </td>
+
+                <td>
+                    <a href="#" th:href="@{/queryRecord(pid=${patient.pid})}">查看病例</a>
+                    <a href="#" th:href="@{/showRecordView(pid=${patient.pid})}">添加病例</a>
+                    <a href="#" th:href="@{/queryPatientById(pid=${patient.pid})}">修改病人</a>
+                </td>
+                </tr>
+            </table>
+
+            <div class="row">
+            <div class="col-md-11"></div>
+            <div class="col-md-1">
+            <span th:unless="${result.currentPage}gt '1'"><a href="#"  >&lt</a></span>
+            <span th:if="${result.currentPage}gt '1'"><a href="#" th:href="@{'/queryPatient?page='+${result.currentPage-1}}" >&lt </a></span>
+            <span ><a href="#" th:href="@{'/queryPatient?page='+${result.currentPage}}" th:text="${result.currentPage}"></a></span>
+            <span th:if="${result.totalPage}gt ${result.currentPage}"><a href="#" th:href="@{'/queryPatient?page='+${result.currentPage+1}}">&gt</a></span>
+                <span th:unless="${result.totalPage}gt ${result.currentPage}"><a href="#"  > &gt</a></span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/popper.js/popper.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="./vendor/chart.js/chart.min.js"></script>
+<script src="./js/carbon.js"></script>
+<script src="./js/demo.js"></script>
+
+</body>
+</html>

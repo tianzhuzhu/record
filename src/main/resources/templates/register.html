@@ -1,0 +1,141 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carbon - Admin Template</title>
+    <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+<div class="page-wrapper flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card p-4">
+                    <div class="card-header text-center text-uppercase h4 font-weight-light">
+                        注册
+                    </div>
+                    <form class="card-body py-5" th:action="@{/registy}"  th:object="${user} " th:method="post" id="form">
+                        <div class="form-group">
+                            <label class="form-control-label">用户名</label> <span id="warn"></span>
+                            <input type="name" class="form-control" name="username" id="username" onblur="checkName()">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label">邮箱</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label">密码</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label">确认密码</label>  <span id="warn2"></span>
+                            <input type="password" id="checkpassword" onblur="checkPassword()" class="form-control" >
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success btn-block" id="register">创建用户</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/popper.js/popper.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="./vendor/chart.js/chart.min.js"></script>
+<script src="./js/carbon.js"></script>
+<script src="./js/demo.js"></script>
+<script type="text/javascript">
+    var check1=false;
+    var check2=false;
+    function checkName() {
+        var username = $('#username').val();
+
+        $.post(
+            "checkUsermame",  //url
+            { username :username}
+            ,
+
+            function success(result){
+                if (result==false)
+                {
+                    $("#warn").html("  该应户名已存在");
+                    $("#warn").css("color","red");
+                    check1=false;
+                }
+                if (result==true)
+                {
+                    $("#warn").html("  用户名可用");
+                    $("#warn").css("color","green");
+                    check1=true;
+                }
+            }
+
+        );
+        // $.ajax("www.baidu.com", {
+        //     type: "get",
+        //     data: {username: username},
+        //     async: false,
+        //     xhrFileds: {withCredentials: true},
+        //     sucess: function () {
+        //         alert(1);
+        //     }
+        //
+        // });
+        check();
+    }
+    function checkPassword(){
+        var checkpassword =$("#checkpassword").val()
+        var password=$("#password").val()
+        if (checkpassword==password)
+        {
+            check2 = true;
+            $("#warn").html("");
+        }
+        if (checkpassword!=password)
+        {
+            check2 = false;
+            $("#warn2").html("密码不一致");
+            $("#warn2").css("color","red");
+
+
+        }
+        check();
+    }
+    function check(){
+        if ((check2 == true)&&(check2==true))
+            $("#register").attr("disabled",false);
+        if ((check2 == false)||(check2==false))
+            $("#register").attr("disabled",true);
+
+    }
+    window.onload = function () {
+
+        // function checkName() {
+        //     $.post(
+        //         "checkUserName",  //url
+        //         { username : user },
+        //         function success(result){
+        //             if (result==true)
+        //                 $('#warn').text("用户名不存在")
+        //         }
+        //     );
+        // }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>主页</title>
+    <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="sidebar-fixed header-fixed">
+    <div class="main-container" th:fragment="leftbar">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-title">Navigation</li>
+
+                    <li class="nav-item">
+                        <a href="/home" class="nav-link active">
+                            <i class="icon icon-speedometer"></i> 主页
+                        </a>
+                    </li>
+
+                    <li class="nav-item nav-dropdown">
+                        <a href="#" class="nav-link nav-dropdown-toggle">
+                            <i class="icon icon-energy"></i> 病历管理 <i class="fa fa-caret-left"></i>
+                        </a>
+
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a href="/toPatientRegistration"  class="nav-link">
+                                    <i class="icon icon-energy"></i> 病人登记
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/queryPatient" class="nav-link">
+                                    <i class="icon icon-energy"></i> 病人管理
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="icon icon-energy"></i> 添加病例
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="queryRecordAll" class="nav-link">
+                                    <i class="icon icon-energy"></i> 管理病例
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+            </nav>
+        </div>
+</div>
+
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/popper.js/popper.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="./vendor/chart.js/chart.min.js"></script>
+<script src="./js/carbon.js"></script>
+<script src="./js/demo.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

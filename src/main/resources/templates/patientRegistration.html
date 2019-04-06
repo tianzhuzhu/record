@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title><!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Carbon - Admin Template</title>
+            <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
+            <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
+            <link rel="stylesheet" href="./css/styles.css">
+        </head>
+<body class="sidebar-fixed header-fixed">
+<div class="page-wrapper">
+    <nav class="navbar page-header">
+        <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <a class="navbar-brand" href="#">
+            <img src="./imgs/logo.png" alt="logo">
+        </a>
+
+        <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <ul class="navbar-nav ml-auto">
+
+
+            <li id="head" th:include="head::head"></li>
+        </ul>
+    </nav>
+
+    <div id="leftbar" th:include="leftbar::leftbar">
+        </div>
+        #正文内容
+
+        <div class="content">
+            <div class="container-fluid">
+
+
+                <div class="row ">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                病人登记
+                            </div>
+
+                    <div class="card-body">
+                        <span  classs="badge badge-pill badge-danger" th:if="${message}" th:text="${message}"></span>
+                        <form th:action="@{/addPatient}"  th:object="${patient} " th:method="post"  enctype="multipart/form-data">
+
+
+                            <label>病人信息</label>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="username" class="form-control-label">姓名</label>
+                                        <input type="text" id="username" name="name" class="form-control" placeholder="姓名..." required="required" >
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="age" class="form-control-label">年龄</label>
+                                        <input type="text" id="age" name="age" class="form-control" placeholder="年龄...">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="idcard" class="form-control-label">身份证号</label>
+                                        <input type="text" id="idcard" name ="idcard"class="form-control" placeholder="身份证号码..." required="required" >
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+                                <div class="col-md-4">
+
+                                    <label for="birthday" class="form-control-label">生日</label>
+                                    <input id="birthday" class="form-control" name="birthday"placeholder="以xxxx-xx-xx的格式输入" >
+                                </div>
+
+                                <div class="col-md-4">
+                                        <label for="normal-2" class="form-control-label">电话</label>
+                                        <input id="normal-2" class="form-control" name="phone" placeholder="请输入电话号码">
+                                </div>
+
+                                <div class="col-md-4">
+                                        <label for="normal-3" class="form-control-label">地址</label>
+                                        <input id="normal-3" class="form-control" name="address"placeholder="地址">
+                                </div>
+                                </div>
+
+
+
+                                <label for="single-select" class="form-control-label">性别</label>
+                                <select id="single-select" class="form-control" name="sex">
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                                <input type="file" name="image"/>
+                                <div class="row">
+                                    <div class="col-md-11">
+                                    </div>
+
+
+                                    <div class="col-1">
+                                     <input type="submit" class="btn btn-outline-primary">
+                                    </div>
+
+
+                                </div>
+                            <div>
+
+                            </div>
+
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/popper.js/popper.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="./vendor/chart.js/chart.min.js"></script>
+<script src="./js/carbon.js"></script>
+<script src="./js/demo.js"></script>
+
+</body>
+</html>

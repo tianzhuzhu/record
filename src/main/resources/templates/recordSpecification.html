@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title><!doctype html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Carbon - Admin Template</title>
+            <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
+            <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
+            <link rel="stylesheet" href="./css/styles.css">
+        </head>
+<body class="sidebar-fixed header-fixed">
+<div class="page-wrapper">
+    <nav class="navbar page-header">
+        <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <a class="navbar-brand" href="#">
+            <img src="./imgs/logo.png" alt="logo">
+        </a>
+
+        <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <ul class="navbar-nav ml-auto">
+
+
+            <li id="head" th:include="head::head"></li>
+        </ul>
+    </nav>
+
+    <div id="leftbar" th:include="leftbar::leftbar">
+        </div>
+
+
+
+        <div class="content">
+
+            <table class="table table-striped"th:if="${recordPatient.record}">
+                <tr>
+                    <th>id</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>生日</th>
+                    <th>身份证号</th>
+                    <th>电话</th>
+                    <th>地址</th>
+                    <th>时间</th>
+                </tr>
+                <tr>
+                    <td th:text="${recordPatient.patient.pid}">1</td>
+                    <td th:text="${recordPatient.patient.name}">张三</td>
+                    <td th:text="${recordPatient.patient.sex}">zhangsan</td>
+                    <td th:text="${recordPatient.patient.age}">20</td>
+                    <td th:text="${recordPatient.patient.birthday}">1970</td>
+                    <td th:text="${recordPatient.patient.idcard}"></td>
+                    <td th:text="${recordPatient.patient.phone}"></td>
+                    <td th:text="${recordPatient.patient.address}"></td>
+                    <td th:text="${recordPatient.record.time}"></td>
+
+                </tr>
+
+            </table>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                <div class="card text-white border-0">
+                <div id="description-header"class="card-header bg-info">病情描述</div>
+                    <font color="black">
+                        <div id="description"class="card-body bg-info" th:text="${recordPatient.record.description}"  ></div>
+                    </font>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/popper.js/popper.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="./vendor/chart.js/chart.min.js"></script>
+<script src="./js/carbon.js"></script>
+<script src="./js/demo.js"></script>
+<script type="text/javascript">
+    onload=function () {
+        $.post(
+            "check",  //url
+            {},
+            function success(result){
+                $('#username').html(result.username);
+            }
+
+        );
+    }
+
+</script>
+</body>
+</html>
